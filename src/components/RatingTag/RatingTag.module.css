@@ -1,0 +1,33 @@
+.ratingTagBase {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.ratingText {
+  font-size: var(--font-lg);
+}
+
+.highRating {
+  composes: ratingTagBase;
+  background-color: var(--color-success);
+  border-color: var(--color-success-dark);
+  color: var(--color-white);
+}
+
+.mediumRating {
+  composes: ratingTagBase;
+  background-color: var(--color-warning);
+  border-color: var(--color-warning-dark);
+}
+
+.lowRating {
+  composes: ratingTagBase;
+  background-color: var(--color-error);
+  border-color: var(--color-error-dark);
+}
