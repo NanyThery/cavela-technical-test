@@ -1,5 +1,6 @@
 import { QuoteItem } from "../../types/QuoteItem.interface";
 import { numberToMoneyString } from "../../utils/moneyConversor";
+import { useAnimatedNumber } from "../../hooks/useAnimatedNumber";
 import styles from "./CardTable.module.css";
 
 interface CardTableProps {
@@ -7,6 +8,10 @@ interface CardTableProps {
 }
 
 export default function CardTable({ quoteItems }: CardTableProps) {
+  const animatedNumber = useAnimatedNumber(
+    quoteItems.reduce((acc, item) => acc + item.quantity * item.unitCost, 0),
+    2000
+  );
   return (
     <table className={styles.tableContainer}>
       <thead>
@@ -28,14 +33,7 @@ export default function CardTable({ quoteItems }: CardTableProps) {
         ))}
         <tr>
           <td colSpan={3}></td>
-          <td className={styles.totalCell}>
-            {numberToMoneyString(
-              quoteItems.reduce(
-                (acc, item) => acc + item.quantity * item.unitCost,
-                0
-              )
-            )}
-          </td>
+          <td className={styles.totalCell}>$ {animatedNumber}</td>
         </tr>
       </tbody>
     </table>

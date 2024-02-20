@@ -1,0 +1,36 @@
+.addQuotationButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  position: relative;
+  gap: var(--space-sm);
+}
+
+.addQuotationButtonContainer {
+  border: 2px dashed var(--color-gray-300);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--space-sm);
+}
+
+.addQuotationButtonContainer:hover {
+  background-color: var(--color-gray-100);
+  cursor: pointer;
+}
+
+.addQuotationButtonIcon {
+  width: 60px;
+  height: 60px;
+  color: var(--color-gray-300);
+  border: 3px solid var(--color-gray-300);
+  border-radius: var(--space-sm);
+}
+
+.addQuotationButtonIcon svg {
+  width: 100%;
+  height: 100%;
+}
