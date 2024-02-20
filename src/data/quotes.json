@@ -1,0 +1,13 @@
+[
+  {
+    "quote_items": ["1be92e49-98a0-44e6-a9d4-7a9fd480b22c", "52fe34bf-2d54-48c1-a3e6-f7a8ee6560b7"],
+    "badges": [
+      ["reviews", 1],
+      ["cost", 2]
+    ]
+  },
+  {
+    "quote_items": ["1be92e49-98a0-44e5-a9d4-7a9fd480b33d", "52fe34bf-2d54-48c1-a3e6-f7a8ee6561c8"],
+    "badges": [["cost", 1]]
+  }
+]

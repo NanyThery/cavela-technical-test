@@ -1,0 +1,22 @@
+[
+  {
+    "supplier_id": "597d3e89-7b7d-4f55-a0b5-861a08f58cad",
+    "name": "Supplier 1",
+    "score": 4.9
+  },
+  {
+    "supplier_id": "0979cd94-7799-47e2-bb36-5fd2dd82ea18",
+    "name": "Supplier 2",
+    "score": 4.2
+  },
+  {
+    "supplier_id": "0979cd94-7799-47e2-bb36-5fd2dd82eb20",
+    "name": "Supplier 3",
+    "score": 5
+  },
+  {
+    "supplier_id": "0979cd94-7799-47e2-bb36-5fd2dd82ec21",
+    "name": "Supplier 4",
+    "score": 3.2
+  }
+]
