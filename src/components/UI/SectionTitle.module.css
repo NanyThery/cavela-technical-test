@@ -1,0 +1,14 @@
+.titleContainer {
+  display: flex;
+  gap: var(--space-sm);
+  max-width: 800px;
+}
+
+.titleText {
+  line-height: 1;
+}
+
+.titleLine {
+  flex: 1;
+  border-bottom: 2px solid var(--color-gray-400);
+}
