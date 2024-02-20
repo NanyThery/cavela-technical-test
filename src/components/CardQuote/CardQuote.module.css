@@ -14,7 +14,10 @@
 
 .cardContainer {
   width: 100%;
-  padding: var(--space-sm);
+  display: flex;
+  flex-flow: column;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg) var(--space-sm) var(--space-sm);
   background-color: var(--color-secondary-light);
   border-radius: var(--radius-md);
   border: 2px solid var(--color-secondary);
