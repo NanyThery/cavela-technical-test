@@ -5,8 +5,13 @@
   --color-primary-dark: #49615c;
   --color-secondary: #dec036;
   --color-secondary-light: #fdf7e3;
-  --color-terciary: #6cb2fb;
+  --color-secondary-dark: #bfae2b;
+  --color-tertiary: #6cb2fb;
+  --color-tertiary-dark: #3a8ed8;
   --color-terciary-light: #e5f1ff;
+  --color-orange-100light: #f9e0d2;
+  --color-orange: #f2c0a3;
+  --color-orange-dark: #e99e6e;
   --color-white: #ffffff;
   --color-gray-100: #ebebeb;
   --color-gray-200: #dadada;
@@ -26,6 +31,7 @@
 
   /* Font sizes*/
   --text-base-size: 1em;
+  --font-lg: 1.5em;
   --font-m: 1em;
   --font-s: 0.9em;
   --font-xs: 0.75em;
