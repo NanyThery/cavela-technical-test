@@ -1,0 +1,31 @@
+.baseTag {
+  border-radius: var(--radius-lg);
+  padding: var(--space-xxs) var(--space-sm);
+  display: inline;
+  white-space: nowrap;
+  border: 2px solid var(--color-primary);
+}
+
+.primaryColorTag {
+  composes: baseTag;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary-dark);
+}
+
+.secondaryColorTag {
+  composes: baseTag;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary-dark);
+}
+
+.tertiaryColorTag {
+  composes: baseTag;
+  background-color: var(--color-tertiary);
+  border-color: var(--color-tertiary-dark);
+}
+
+.orangeColorTag {
+  composes: baseTag;
+  background-color: var(--color-orange);
+  border-color: var(--color-orange-dark);
+}
