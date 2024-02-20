@@ -1,13 +1,17 @@
 .skeletonContainer {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
+  padding-top: 50px;
   justify-content: flex-end;
   gap: var(--space-sm);
 }
 
 .cavelasChoice {
   background: linear-gradient(to right, #f0f0f0, #e0e0e0, #f0f0f0);
+  position: absolute;
+  top: 0;
   background-size: 200% 100%;
   animation: loadingAnimation 1.5s ease-in-out infinite;
   padding: var(--space-xxs) var(--space-sm);
@@ -18,11 +22,26 @@
 
 .cardContainer {
   width: 100%;
+  flex: 1;
   background: linear-gradient(to right, #f0f0f0, #e0e0e0, #f0f0f0);
   background-size: 200% 100%;
   animation: loadingAnimation 1.5s ease-in-out infinite;
   border-radius: var(--radius-md);
-  height: 320px;
+  min-height: 320px;
+}
+
+.cardFooter {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.cardButton {
+  background: linear-gradient(to right, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: loadingAnimation 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+  width: 130px;
+  height: 40px;
 }
 
 @keyframes loadingAnimation {

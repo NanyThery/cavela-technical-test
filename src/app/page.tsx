@@ -6,12 +6,14 @@ import fetchQuotes from "./actions";
 import CardQuote from "@/components/CardQuote/CardQuote";
 import { QuotationCard } from "../types/QuotationCard.interface";
 import CardGridSkeletons from "../components/Skeletons/CardGridSkeletons";
+import AddQuotationButton from "../components/AddQuotationButton/AddQuotationButton";
 
 export default function HomePage() {
   const [quotes, setQuotes] = useState<QuotationCard[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // This is done because we are not tackling a real ddbb. If we had a real data base, we wouldn't need to use  'use client' or useEffect, since we could do the actions server side and ask the ddbb for the updated array of data after deletion.
+  // This is done because we are not tackling a real ddbb. If we did, we wouldn't need to use  'use client' or useEffect/useState , since we could do the actions server side and ask the ddbb for the updated array of data after deletion.
 
   useEffect(() => {
     async function fetchQuotesFun() {
@@ -43,6 +45,7 @@ export default function HomePage() {
               onRemove={() => handleRemove(index)}
             />
           ))}
+          <AddQuotationButton onClick={() => setIsModalOpen(!isModalOpen)} />
         </CardGrid>
       )}
     </div>

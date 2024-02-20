@@ -1,0 +1,18 @@
+.buttonBase {
+  padding: var(--space-md) var(--space-lg);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary {
+  composes: buttonBase;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.primary:hover {
+  background-color: var(--color-primary-dark);
+}

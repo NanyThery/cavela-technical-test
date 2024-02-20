@@ -6,7 +6,10 @@ export default function CardGridSkeletons() {
     <CardGrid>
       <CardQuotationSkeleton></CardQuotationSkeleton>
       <CardQuotationSkeleton></CardQuotationSkeleton>
-      <CardQuotationSkeleton noTag={true}></CardQuotationSkeleton>
+      <CardQuotationSkeleton
+        noTag={true}
+        noButton={true}
+      ></CardQuotationSkeleton>
     </CardGrid>
   );
 }

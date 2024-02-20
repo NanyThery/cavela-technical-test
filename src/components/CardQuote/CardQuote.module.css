@@ -65,3 +65,9 @@
   right: -15px;
   top: -20px;
 }
+
+.cardFooter {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

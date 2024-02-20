@@ -7,6 +7,7 @@ import CardTable from "../CardTable/CardTable";
 import { RemoveButton } from "../RemoveButton/RemoveButton";
 import { ColorVariant } from "../../types/ColorVariant.type";
 import { selectTagVariant } from "../../utils/selectTagVariant";
+import CustomButton from "../UI/CustomButton";
 
 interface CardQuoteProps {
   quote: QuotationCard;
@@ -49,6 +50,11 @@ export default function CardQuote({ quote, onRemove }: CardQuoteProps) {
             <CardTable quoteItems={quote.quoteItems} />
           </div>
         </div>
+      </div>
+      <div className={styles.cardFooter}>
+        <CustomButton onClick={handleRemove} variant="primary">
+          Add to my quotes
+        </CustomButton>
       </div>
     </div>
   );
