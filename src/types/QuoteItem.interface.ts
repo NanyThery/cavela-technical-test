@@ -1,4 +1,4 @@
-import { Badge } from './Badge.type';
+import { Badge } from "./Badge.type";
 
 export interface QuoteItem {
   supplierId: string;
@@ -6,7 +6,7 @@ export interface QuoteItem {
   variant: string;
   moq: number;
   quantity: number;
-  unitCost: string;
+  unitCost: number;
   leadTime: string;
   sampleCost: string;
   badges: Badge[];

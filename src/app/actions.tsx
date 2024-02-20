@@ -7,6 +7,7 @@ import { Badge } from "../types/Badge.type";
 import { QuoteItem } from "../types/QuoteItem.interface";
 import { Supplier } from "../types/Supplier.interface";
 import { QuotationCard } from "../types/QuotationCard.interface";
+import { moneyStringToNumber } from "../utils/moneyConversor";
 
 function fetchQuoteItems(itemsId: string[]): Promise<QuoteItem[]> {
   const filteredItems = quoteItems.filter((item) =>
@@ -19,7 +20,7 @@ function fetchQuoteItems(itemsId: string[]): Promise<QuoteItem[]> {
     variant: item.variant,
     moq: item.moq,
     quantity: item.quantity,
-    unitCost: item.unit_cost,
+    unitCost: moneyStringToNumber(item.unit_cost),
     leadTime: item.lead_time,
     sampleCost: item.sample_cost,
     badges: item.badges as Badge[],
