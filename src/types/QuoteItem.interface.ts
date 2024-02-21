@@ -10,4 +10,5 @@ export interface QuoteItem {
   leadTime: string;
   sampleCost: string;
   badges: Badge[];
+  isCavelasChoice: boolean;
 }

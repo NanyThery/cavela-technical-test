@@ -35,7 +35,7 @@
   {
     "supplier_id": "0979cd94-7799-47e2-bb36-5fd2dd82ea18",
     "quote_item_id": "52fe34bf-2d54-48c1-a3e6-f7a8ee6561c8",
-    "variant": "Product B - Variant 2",
+    "variant": "Product B - Variant 2 With a longer name",
     "moq": 200,
     "quantity": 200,
     "unit_cost": "$4.50",

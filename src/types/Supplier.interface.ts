@@ -1,5 +1,5 @@
 export interface Supplier {
-  supplierId: String;
-  name: String;
+  supplierId: string;
+  name: string;
   score: number;
 }

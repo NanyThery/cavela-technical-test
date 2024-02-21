@@ -2,6 +2,7 @@ import { QuoteItem } from "../../types/QuoteItem.interface";
 import { numberToMoneyString } from "../../utils/moneyConversor";
 import { useAnimatedNumber } from "../../hooks/useAnimatedNumber";
 import styles from "./CardTable.module.css";
+import CustomTable from "../UI/CustomTable";
 
 interface CardTableProps {
   quoteItems: QuoteItem[];
@@ -13,7 +14,7 @@ export default function CardTable({ quoteItems }: CardTableProps) {
     2000
   );
   return (
-    <table className={styles.tableContainer}>
+    <CustomTable>
       <thead>
         <tr>
           <th scope="col">Variant</th>
@@ -36,6 +37,6 @@ export default function CardTable({ quoteItems }: CardTableProps) {
           <td className={styles.totalCell}>$ {animatedNumber}</td>
         </tr>
       </tbody>
-    </table>
+    </CustomTable>
   );
 }

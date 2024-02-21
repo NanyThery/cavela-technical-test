@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
+import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
 
 export const metadata: Metadata = {
   title: "Cavela Test App",
@@ -14,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="pageContainer">{children}</div>
+        <MantineProvider>
+          <div className="pageContainer">{children}</div>
+        </MantineProvider>
       </body>
     </html>
   );

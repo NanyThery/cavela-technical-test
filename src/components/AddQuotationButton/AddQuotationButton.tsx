@@ -1,14 +1,27 @@
-import { Group, Modal } from "@mantine/core";
 import styles from "./AddQuotationButton.module.css";
 import { useDisclosure } from "@mantine/hooks";
-import CustomButton from "../UI/CustomButton";
 import QuotationsModal from "../QuotationsModal/QuotationsModal";
-import { fetchQuoteItemsPerSupplier } from "../../app/actions";
+import { QuoteItemsPerSupplier } from "../../app/actions";
 
-export default function AddQuotationButton({}) {
+import { QuotationCard } from "../../types/QuotationCard.interface";
+
+interface AddQuotationButtonProps {
+  allItems: QuoteItemsPerSupplier;
+  currentQuotes: QuotationCard[];
+  onAdd: (data: string[]) => void;
+}
+
+export default function AddQuotationButton({
+  allItems,
+  currentQuotes,
+  onAdd,
+}: AddQuotationButtonProps) {
   const [opened, { open, close }] = useDisclosure();
-  // const quoteItems = await fetchQuoteItemsPerSupplier();
-  const quoteItems = {};
+
+  function handleAdd(data: string[]) {
+    onAdd(data);
+    close();
+  }
 
   return (
     <div className={styles.addQuotationButtonWrapper}>
@@ -30,7 +43,13 @@ export default function AddQuotationButton({}) {
           </svg>
         </div>
       </div>
-      <QuotationsModal opened={opened} close={close} items={quoteItems} />
+      <QuotationsModal
+        opened={opened}
+        close={close}
+        items={allItems}
+        currentQuotes={currentQuotes}
+        onAdd={(data: string[]) => handleAdd(data)}
+      />
     </div>
   );
 }

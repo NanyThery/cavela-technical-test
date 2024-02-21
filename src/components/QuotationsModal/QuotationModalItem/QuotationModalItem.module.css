@@ -1,0 +1,33 @@
+.itemWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.supplierContainer {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  margin-right: var(--space-md);
+}
+
+.isCavelaChoice {
+  width: 40px;
+  text-align: center;
+}
+
+.variantsCell {
+  width: 200px;
+  max-width: 200px;
+}
+
+.isDisabled {
+  background-color: var(--color-gray-100);
+}
+
+@media screen and (max-width: 768px) {
+  .itemWrapper {
+    flex-flow: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+}

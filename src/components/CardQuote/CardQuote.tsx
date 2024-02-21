@@ -5,7 +5,7 @@ import styles from "./CardQuote.module.css";
 import RatingTag from "../RatingTag/RatingTag";
 import CardTable from "../CardTable/CardTable";
 import { RemoveButton } from "../RemoveButton/RemoveButton";
-import { ColorVariant } from "../../types/ColorVariant.type";
+
 import { selectTagVariant } from "../../utils/selectTagVariant";
 import CustomButton from "../UI/CustomButton";
 
@@ -21,9 +21,9 @@ export default function CardQuote({ quote, onRemove }: CardQuoteProps) {
 
   return (
     <div className={styles.cardWrapper}>
-      <span className={styles.cavelasChoice}>
-        {quote.isCavelaChoice && `Cavela's Choice ⭐`}
-      </span>
+      {quote.isCavelaChoice && (
+        <span className={styles.cavelasChoice}>Cavela&apos;s Choice ⭐</span>
+      )}
 
       <div className={styles.cardContainer}>
         <div className={styles.cardRemoveContainer}>
@@ -46,9 +46,7 @@ export default function CardQuote({ quote, onRemove }: CardQuoteProps) {
           </div>
         </div>
         <div className={styles.cardBody}>
-          <div className={styles.quoteItemsContainer}>
-            <CardTable quoteItems={quote.quoteItems} />
-          </div>
+          <CardTable quoteItems={quote.quoteItems} />
         </div>
       </div>
       <div className={styles.cardFooter}>

@@ -24,6 +24,9 @@ function fetchQuoteItems(itemsId: string[]): Promise<QuoteItem[]> {
     leadTime: item.lead_time,
     sampleCost: item.sample_cost,
     badges: item.badges as Badge[],
+    isCavelasChoice: item.badges.some(
+      (badge) => badge[0] === "cavela_choice" && badge[1] === true
+    ),
   }));
 
   return Promise.resolve(mappedItems);
@@ -40,6 +43,9 @@ function fetchAllQuoteItems(): Promise<QuoteItem[]> {
     leadTime: item.lead_time,
     sampleCost: item.sample_cost,
     badges: item.badges as Badge[],
+    isCavelasChoice: item.badges.some(
+      (badge) => badge[0] === "cavela_choice" && badge[1] === true
+    ),
   }));
 
   return Promise.resolve(mappedItems);
@@ -132,4 +138,23 @@ export async function fetchQuoteItemsPerSupplier(): Promise<QuoteItemsPerSupplie
   });
 
   return Promise.resolve(quoteItemsPerSupplier);
+}
+
+export async function createQuote(
+  quotationsItems: string[]
+): Promise<QuotationCard> {
+  const quoteItems = await fetchQuoteItems(quotationsItems);
+  const supplier = await fetchSupplierInfo(quoteItems[0].supplierId);
+  const isCavelaChoice = quoteItems.some((item) =>
+    item.badges.some(
+      (badge) => badge[0] === "cavela_choice" && badge[1] === true
+    )
+  );
+
+  return Promise.resolve({
+    supplier,
+    quoteItems,
+    badges: [],
+    isCavelaChoice,
+  });
 }

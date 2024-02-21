@@ -1,0 +1,43 @@
+.quoteItemsContainer {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gray-200);
+  overflow: hidden;
+}
+
+.tableContainer {
+  width: 100%;
+  background-color: var(--color-white);
+  padding: var(--space-xxs);
+  border-collapse: collapse;
+}
+
+.tableContainer th,
+.tableContainer td {
+  font-size: var(--font-s);
+  padding: var(--space-sm);
+  text-align: left;
+}
+
+.tableContainer td,
+.tableContainer th {
+  border: 1px solid var(--color-gray-200);
+}
+
+/* This is to remove outer borders of the table and allow to apply a border radius */
+.tableContainer tr:first-child th,
+.tableContainer tr:last-child td {
+  border-top: none;
+  border-bottom: none;
+}
+
+.tableContainer tr td:first-child,
+.tableContainer tr th:first-child {
+  border-left: none;
+  border-right: none;
+}
+
+.tableContainer tr th:last-child,
+.tableContainer tr td:last-child {
+  border-right: none;
+  font-weight: bold;
+}
