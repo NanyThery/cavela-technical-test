@@ -32,7 +32,6 @@
 .cardContainer:hover {
   background-color: var(--color-primary-light);
   border-color: var(--color-primary);
-  cursor: pointer;
 }
 
 .cardHeader {
@@ -64,4 +63,5 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  gap: var(--space-xs);
 }

@@ -5,7 +5,6 @@ import styles from "./CardQuote.module.css";
 import RatingTag from "../RatingTag/RatingTag";
 import CardTable from "../CardTable/CardTable";
 import { RemoveButton } from "../RemoveButton/RemoveButton";
-
 import { selectTagVariant } from "../../utils/selectTagVariant";
 import CustomButton from "../UI/CustomButton";
 
@@ -50,6 +49,9 @@ export default function CardQuote({ quote, onRemove }: CardQuoteProps) {
         </div>
       </div>
       <div className={styles.cardFooter}>
+        <CustomButton onClick={handleRemove} variant="secondary">
+          Edit Quote
+        </CustomButton>
         <CustomButton onClick={handleRemove} variant="primary">
           Add to my quotes
         </CustomButton>
