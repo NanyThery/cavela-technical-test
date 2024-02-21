@@ -2,15 +2,15 @@
 import { useState } from "react";
 import styles from "./CardGrid.module.css";
 import { QuotationCard } from "../../types/QuotationCard.interface";
-
 import CardQuote from "../CardQuote/CardQuote";
 import AddQuotationButton from "../AddQuotationButton/AddQuotationButton";
+import CardsGrid from "../UI/CardsGrid";
 
 interface CardGridProps {
   quotes: QuotationCard[];
 }
 
-export default function CardGrid({ quotes }: CardGridProps) {
+export default function QuotesGrid({ quotes }: CardGridProps) {
   // This is done because we are not tackling a real ddbb. If we did, we wouldn't need to use  'use client' or useEffect/useState , since we could do the actions server side and ask the ddbb for the updated array of data after deletion.
   const [tempQuotes, setQuotes] = useState<QuotationCard[]>(quotes);
 
@@ -21,11 +21,11 @@ export default function CardGrid({ quotes }: CardGridProps) {
   }
 
   return (
-    <div className={styles.cardGrid}>
+    <CardsGrid>
       {tempQuotes.map((q, index) => (
         <CardQuote key={index} quote={q} onRemove={() => handleRemove(index)} />
       ))}
       <AddQuotationButton />
-    </div>
+    </CardsGrid>
   );
 }
