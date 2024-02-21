@@ -34,6 +34,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  gap: var(--space-sm);
 }
 .cardButton {
   background: linear-gradient(to right, #f0f0f0, #e0e0e0, #f0f0f0);
@@ -41,7 +42,7 @@
   animation: loadingAnimation 1.5s ease-in-out infinite;
   border-radius: var(--radius-md);
   width: 130px;
-  height: 40px;
+  height: 68px;
 }
 
 @keyframes loadingAnimation {

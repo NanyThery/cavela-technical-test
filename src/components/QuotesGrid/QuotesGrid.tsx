@@ -31,7 +31,7 @@ export default function QuotesGrid({ quotes, allItems }: CardGridProps) {
   async function handleEdit(itemIds: string[], index: number) {
     const newQuote = await createQuote(itemIds);
     const updatedQuotes = [...tempQuotes];
-    updatedQuotes[index] = newQuote;
+    updatedQuotes[index].quoteItems = newQuote.quoteItems;
 
     setQuotes(updatedQuotes);
   }

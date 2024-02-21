@@ -9,6 +9,7 @@ export default function CardQuotationSkeleton({
       <div className={styles.cardContainer}></div>
       <div className={styles.cardFooter}>
         {!noButton && <div className={styles.cardButton}></div>}
+        {!noButton && <div className={styles.cardButton}></div>}
       </div>
     </div>
   );
