@@ -14,7 +14,7 @@ interface CardGridProps {
 export default function QuotesGrid({ quotes, allItems }: CardGridProps) {
   // This is done because we are not tackling a real ddbb. If we did, we wouldn't need to use  'use client' or useEffect/useState , since we could do the actions server side and ask the ddbb for the updated array of data after deletion.
   const [tempQuotes, setQuotes] = useState<QuotationCard[]>(quotes);
-
+  const cardsPlaceholders = 3 - tempQuotes.length;
   function handleRemove(index: number) {
     const updatedQuotes = [...tempQuotes];
     updatedQuotes.splice(index, 1);
@@ -31,6 +31,7 @@ export default function QuotesGrid({ quotes, allItems }: CardGridProps) {
   async function handleEdit(itemIds: string[], index: number) {
     const newQuote = await createQuote(itemIds);
     const updatedQuotes = [...tempQuotes];
+
     updatedQuotes[index].quoteItems = newQuote.quoteItems;
 
     setQuotes(updatedQuotes);
@@ -52,11 +53,17 @@ export default function QuotesGrid({ quotes, allItems }: CardGridProps) {
           />
         );
       })}
-      <AddQuotationButton
-        currentQuotes={tempQuotes}
-        allItems={allItems}
-        onAdd={(data: string[]) => handleAdd(data)}
-      />
+      {Array(cardsPlaceholders)
+        .fill(null)
+        .map((_, index) => (
+          <AddQuotationButton
+            key={index}
+            currentQuotes={tempQuotes}
+            allItems={allItems}
+            onAdd={(data: string[]) => handleAdd(data)}
+            data-testid="add-quotation-button"
+          />
+        ))}
     </CardsGrid>
   );
 }

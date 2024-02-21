@@ -24,7 +24,10 @@ export default function AddQuotationButton({
   }
 
   return (
-    <div className={styles.addQuotationButtonWrapper}>
+    <div
+      className={styles.addQuotationButtonWrapper}
+      data-testid="add-quotation-button"
+    >
       <div className={styles.addQuotationButtonContainer} onClick={open}>
         <div className={styles.addQuotationButtonIcon}>
           <svg

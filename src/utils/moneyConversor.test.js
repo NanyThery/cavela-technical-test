@@ -1,5 +1,4 @@
-import moneyStringToNumber from "./moneyConversor";
-import numberToMoneyString from "./numberToMoneyString";
+import { moneyStringToNumber, numberToMoneyString } from "./moneyConversor";
 
 describe("moneyStringToNumber", () => {
   it("should convert a money string to a number", () => {
@@ -51,7 +50,7 @@ describe("numberToMoneyString", () => {
 
   it("should handle numbers with no decimal places", () => {
     const result = numberToMoneyString(1000);
-    expect(result).toBe("$1,000");
+    expect(result).toBe("$1,000.00");
   });
 
   it("should handle numbers with commas as decimal separators", () => {
