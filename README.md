@@ -31,6 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Language: React with Next.Js - This app was built using Next.js and applying, whenever possible, the server side rendering and server components. Server components and SSR allow faster UIs, managing the fetch operations and mutations in a very light way. Amongst other useful tools like routing and API building.
 - Deployment: the app has been deployed on Vercel using Github repository as source.
+> cavela-technical-test.vercel.app
 - Styling: for the vast majority of the project, the styling is done through CSS Modules, to allow a fast and more accurate building of the UI according to the specs provided. Despite the library `Mantine` was added, only the `Modal` implementation was used.
 - Testing: testing is done with Jest and React Testing Library
 
@@ -56,9 +57,9 @@ Even though we don't have a "backend for frontend" API policy, in this case, it 
 
 1. Quotes
 
-These are the custom quotes that users created. They can only refer to items of a single supplier (according to the specs), and they cannot combine multiple choices from different suppliers. That means that we can be sure that each quote has items from a single supplier.
+These are the custom quotes that users created. They can only refer to items from a single supplier (according to the specs), and they cannot combine multiple choices from different suppliers. That means that we can be sure that each quote has items from a single supplier.
 
-So, the quotes should also include the necessary information from the supplier as well. These prevents that the fronted has to make a call for EACH quote_item when they all belong to the same supplier. Even thought we know that quotes belong to a single supplier, fronted does not know which one is it, and this information is nested within the `quote_items`.
+So, the quotes should also include the necessary information from the supplier as well. This prevents the front-end from making a call for EACH quote_item when they all belong to the same supplier. Even though we know that quotes belong to a single supplier, the front-end does not know which one is it, and this information is nested within the `quote_items`.
 
 ```json
 [
@@ -94,9 +95,9 @@ So, the quotes should also include the necessary information from the supplier a
 
 2. Quote Items:
 
-Quote items are visually grouped by supplier, and also the selection is restricted in that sense. Given the current data structure coming from the endpoints we'd need to first quote all the `quote_items` then fetch for EACH item, the information of the `supplier` with the id stored. And then create a frontend grouping from the bottom up.
+Quote items are visually grouped by supplier, and also the selection is restricted in that sense. Given the current data structure coming from the endpoints we'd need to first quote all the `quote_items` and then fetch for EACH item, the information of the `supplier` with the ID stored. And then create a frontend grouping from the bottom up.
 
-This forces data grouping that could be avoided on the frontend, besides the extra cost of fetching data multiple times when it's not needed.
+This forces data grouping that could be avoided on the front-end, besides the extra cost of fetching data multiple times when it's not needed.
 
 Quote items could be delivered by the endpoint already grouped by supplier, including the supplier info at a top level:
 
@@ -137,4 +138,4 @@ Quote items could be delivered by the endpoint already grouped by supplier, incl
 
 On the quotations popup, It's not obvious to the user why some options are grayed out or disabled, since all the information is presented together.
 
-Probably a "Tabs" structure where each tab is for one supplier's quotation items, would be more helpful for the users. It could be also be of help a hint text specifying this.
+Probably a "Tabs" structure where each tab is for one supplier's quotation items, would be more helpful for the users. It could also be of help a hint text specifying this.
