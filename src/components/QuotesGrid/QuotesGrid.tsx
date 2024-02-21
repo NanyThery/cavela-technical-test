@@ -28,11 +28,30 @@ export default function QuotesGrid({ quotes, allItems }: CardGridProps) {
     setQuotes(updatedQuotes);
   }
 
+  async function handleEdit(itemIds: string[], index: number) {
+    const newQuote = await createQuote(itemIds);
+    const updatedQuotes = [...tempQuotes];
+    updatedQuotes[index] = newQuote;
+
+    setQuotes(updatedQuotes);
+  }
+
   return (
     <CardsGrid>
-      {tempQuotes.map((q, index) => (
-        <CardQuote key={index} quote={q} onRemove={() => handleRemove(index)} />
-      ))}
+      {tempQuotes.map((q, index) => {
+        const supplierItems: QuoteItemsPerSupplier = {
+          [q.supplier.supplierId]: allItems[q.supplier.supplierId],
+        };
+        return (
+          <CardQuote
+            key={index}
+            quote={q}
+            onRemove={() => handleRemove(index)}
+            allItemsFromSupplier={supplierItems}
+            onEdit={(data: string[]) => handleEdit(data, index)}
+          />
+        );
+      })}
       <AddQuotationButton
         currentQuotes={tempQuotes}
         allItems={allItems}

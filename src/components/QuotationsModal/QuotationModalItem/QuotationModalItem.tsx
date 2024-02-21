@@ -1,3 +1,4 @@
+import { QuotationCard } from "../../../types/QuotationCard.interface";
 import { QuoteItem } from "../../../types/QuoteItem.interface";
 import { Supplier } from "../../../types/Supplier.interface";
 import RatingTag from "../../RatingTag/RatingTag";
@@ -9,12 +10,14 @@ interface QuotationModalItemProps {
     supplier: Supplier;
     quoteItems: QuoteItem[];
   };
-  disabled: boolean;
+  currentQuotes: QuotationCard[];
+  isSupplierAdded: boolean;
 }
 
 export default function QuotationModalItem({
   item,
-  disabled = false,
+  isSupplierAdded = false,
+  currentQuotes,
 }: QuotationModalItemProps) {
   return (
     <div className={styles.itemWrapper}>
@@ -29,7 +32,7 @@ export default function QuotationModalItem({
               return (
                 <tr
                   key={quoteItem.quoteItemId}
-                  className={`${disabled && styles.isDisabled}`}
+                  className={`${isSupplierAdded && styles.isDisabled}`}
                 >
                   <td className={styles.variantsCell}>{quoteItem.variant}</td>
                   <td>{quoteItem.quantity}</td>
@@ -46,7 +49,13 @@ export default function QuotationModalItem({
                       type="checkbox"
                       name="quotationItemId"
                       value={quoteItem.quoteItemId}
-                      disabled={disabled}
+                      disabled={isSupplierAdded}
+                      defaultChecked={currentQuotes.some(
+                        (quote) =>
+                          quote.quoteItems.filter(
+                            (item) => item.quoteItemId === quoteItem.quoteItemId
+                          ).length > 0
+                      )}
                     />
                   </td>
                 </tr>

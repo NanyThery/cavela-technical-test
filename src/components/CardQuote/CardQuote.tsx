@@ -7,15 +7,32 @@ import CardTable from "../CardTable/CardTable";
 import { RemoveButton } from "../RemoveButton/RemoveButton";
 import { selectTagVariant } from "../../utils/selectTagVariant";
 import CustomButton from "../UI/CustomButton";
+import QuotationsModal from "../QuotationsModal/QuotationsModal";
+import { QuoteItemsPerSupplier } from "../../app/actions";
+import { useDisclosure } from "@mantine/hooks";
+import EditQuotationModal from "../EditQuotationsModal/EditQuotationsModal";
 
 interface CardQuoteProps {
   quote: QuotationCard;
   onRemove: () => void;
+  allItemsFromSupplier: QuoteItemsPerSupplier;
+  onEdit: (data: string[]) => void;
 }
 
-export default function CardQuote({ quote, onRemove }: CardQuoteProps) {
+export default function CardQuote({
+  quote,
+  onRemove,
+  allItemsFromSupplier,
+  onEdit,
+}: CardQuoteProps) {
+  const [opened, { open, close }] = useDisclosure();
   function handleRemove() {
     onRemove();
+  }
+
+  function handleEdit(ids: string[]) {
+    close();
+    onEdit(ids);
   }
 
   return (
@@ -49,13 +66,20 @@ export default function CardQuote({ quote, onRemove }: CardQuoteProps) {
         </div>
       </div>
       <div className={styles.cardFooter}>
-        <CustomButton onClick={handleRemove} variant="secondary">
+        <CustomButton onClick={open} variant="secondary">
           Edit Quote
         </CustomButton>
         <CustomButton onClick={handleRemove} variant="primary">
           Add to my quotes
         </CustomButton>
       </div>
+      <EditQuotationModal
+        opened={opened}
+        currentQuotes={[quote]}
+        close={close}
+        items={allItemsFromSupplier}
+        onApply={(ids) => handleEdit(ids)}
+      />
     </div>
   );
 }

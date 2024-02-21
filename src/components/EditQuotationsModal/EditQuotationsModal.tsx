@@ -5,49 +5,24 @@ import CustomButton from "../UI/CustomButton";
 import { QuoteItemsPerSupplier } from "../../app/actions";
 import { QuotationCard } from "../../types/QuotationCard.interface";
 
-import QuotationModalItem from "./QuotationModalItem/QuotationModalItem";
+import QuotationModalItem from "@/components/QuotationsModal/QuotationModalItem/QuotationModalItem";
 import { useState } from "react";
 import { QuoteItem } from "../../types/QuoteItem.interface";
 
-interface QuotationsModalProps {
+interface EditQuotationModalProps {
   opened: boolean;
   close: () => void;
   items: QuoteItemsPerSupplier;
   currentQuotes: QuotationCard[];
-  onAdd: (args: string[]) => void;
+  onApply: (args: string[]) => void;
 }
-export default function QuotationsModal({
+export default function EditQuotationModal({
   opened,
   close,
   items,
   currentQuotes,
-  onAdd,
-}: QuotationsModalProps) {
-  function checkIfMoreThanOneSupplier(
-    selectedItemIds: string[],
-    allItems: QuoteItemsPerSupplier
-  ) {
-    const suppliers: string[] = [];
-
-    Object.keys(allItems).forEach((supplierId) => {
-      const itemsFromSupplier = allItems[supplierId].quoteItems.some(
-        (item: QuoteItem) => selectedItemIds.includes(item.quoteItemId)
-      );
-
-      if (itemsFromSupplier) {
-        suppliers.push(supplierId);
-      }
-    });
-
-    const uniqueSuppliers = new Set(suppliers);
-
-    if (uniqueSuppliers.size > 1) {
-      return true;
-    }
-
-    return false;
-  }
-
+  onApply,
+}: EditQuotationModalProps) {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -60,12 +35,7 @@ export default function QuotationsModal({
       return;
     }
 
-    if (checkIfMoreThanOneSupplier(selectedItemIds, items)) {
-      alert("You can only select items from one supplier");
-      return;
-    }
-
-    onAdd(selectedItemIds);
+    onApply(selectedItemIds);
   }
 
   return (
@@ -74,19 +44,16 @@ export default function QuotationsModal({
       onClose={close}
       size={"xl"}
       centered
-      title="Create new quote"
+      title="Edit Quotation"
     >
       <form onSubmit={handleSubmit}>
         <Stack align="center">
           {Object.keys(items).map((supplierId, index) => {
-            const isAlreadyAdded = currentQuotes.some(
-              (quote) => quote.supplier.supplierId === supplierId
-            );
             return (
               <QuotationModalItem
-                currentQuotes={currentQuotes}
                 item={items[supplierId]}
-                isSupplierAdded={isAlreadyAdded}
+                currentQuotes={currentQuotes}
+                isSupplierAdded={false}
                 key={index}
               />
             );
@@ -94,7 +61,7 @@ export default function QuotationsModal({
         </Stack>
         <Group display="flex" justify="flex-end" mt="lg">
           <CustomButton type="submit" variant="primary">
-            Create
+            Apply
           </CustomButton>
         </Group>
       </form>
