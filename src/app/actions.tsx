@@ -29,6 +29,22 @@ function fetchQuoteItems(itemsId: string[]): Promise<QuoteItem[]> {
   return Promise.resolve(mappedItems);
 }
 
+function fetchAllQuoteItems(): Promise<QuoteItem[]> {
+  const mappedItems = quoteItems.map((item) => ({
+    supplierId: item.supplier_id,
+    quoteItemId: item.quote_item_id,
+    variant: item.variant,
+    moq: item.moq,
+    quantity: item.quantity,
+    unitCost: moneyStringToNumber(item.unit_cost),
+    leadTime: item.lead_time,
+    sampleCost: item.sample_cost,
+    badges: item.badges as Badge[],
+  }));
+
+  return Promise.resolve(mappedItems);
+}
+
 function fetchSupplierInfo(supplierId: string): Promise<Supplier> {
   const supplier = suppliers.find(
     (rawSupplier) => rawSupplier.supplier_id === supplierId
@@ -42,6 +58,18 @@ function fetchSupplierInfo(supplierId: string): Promise<Supplier> {
 
   return Promise.resolve(mappedSupplier);
 }
+
+function fetchAllSuppliersInfo(): Promise<Supplier[]> {
+  const mappedSuppliers = suppliers.map((supplier) => ({
+    supplierId: supplier?.supplier_id || "",
+    name: supplier?.name || "",
+    score: supplier?.score || 0,
+  }));
+
+  return Promise.resolve(mappedSuppliers);
+}
+
+//These are the quotes created automatically or manually stored in the user' account.
 
 export default async function fetchQuotes(): Promise<QuotationCard[]> {
   const mappedQuotes = await Promise.all(
@@ -69,4 +97,39 @@ export default async function fetchQuotes(): Promise<QuotationCard[]> {
       resolve(mappedQuotes);
     }, 3000);
   });
+}
+
+export interface QuoteItemsPerSupplier {
+  [supplierId: string]: {
+    supplier: Supplier;
+    quoteItems: QuoteItem[];
+  };
+}
+
+// We are simulating the fetching of the quote items per supplier. This is a common operation when we want to display the quote items per supplier in a table, for example.
+
+export async function fetchQuoteItemsPerSupplier(): Promise<QuoteItemsPerSupplier> {
+  // We will assume that the endpoint returns the quote items and the suppliers for this operation only.
+  const allQuoteItems = await fetchAllQuoteItems();
+  const allSuppliers = await fetchAllSuppliersInfo();
+
+  const quoteItemsPerSupplier: QuoteItemsPerSupplier = {};
+
+  allQuoteItems.forEach((quoteItem) => {
+    const supplierId = quoteItem.supplierId;
+    const supplier = allSuppliers.find((s) => s.supplierId === supplierId);
+
+    if (supplier) {
+      if (!quoteItemsPerSupplier[supplierId]) {
+        quoteItemsPerSupplier[supplierId] = {
+          supplier,
+          quoteItems: [],
+        };
+      }
+
+      quoteItemsPerSupplier[supplierId].quoteItems.push(quoteItem);
+    }
+  });
+
+  return Promise.resolve(quoteItemsPerSupplier);
 }

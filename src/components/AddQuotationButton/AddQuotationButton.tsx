@@ -1,13 +1,18 @@
+import { Group, Modal } from "@mantine/core";
 import styles from "./AddQuotationButton.module.css";
+import { useDisclosure } from "@mantine/hooks";
+import CustomButton from "../UI/CustomButton";
+import QuotationsModal from "../QuotationsModal/QuotationsModal";
+import { fetchQuoteItemsPerSupplier } from "../../app/actions";
 
-export default function AddQuotationButton({
-  onClick,
-}: {
-  onClick: () => void;
-}) {
+export default function AddQuotationButton({}) {
+  const [opened, { open, close }] = useDisclosure();
+  // const quoteItems = await fetchQuoteItemsPerSupplier();
+  const quoteItems = {};
+
   return (
     <div className={styles.addQuotationButtonWrapper}>
-      <div className={styles.addQuotationButtonContainer} onClick={onClick}>
+      <div className={styles.addQuotationButtonContainer} onClick={open}>
         <div className={styles.addQuotationButtonIcon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +30,7 @@ export default function AddQuotationButton({
           </svg>
         </div>
       </div>
+      <QuotationsModal opened={opened} close={close} items={quoteItems} />
     </div>
   );
 }
