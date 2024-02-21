@@ -1,3 +1,18 @@
+.cardGridSkeleton {
+  margin-top: var(--space-lg);
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+@media screen and (max-width: 768px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
 .skeletonContainer {
   display: flex;
   flex-direction: column;

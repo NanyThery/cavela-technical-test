@@ -1,15 +1,15 @@
-import CardGrid from "../CardGrid/CardGrid";
 import CardQuotationSkeleton from "./CardQuotationSkeleton";
+import styles from "./Skeletons.module.css";
 
 export default function CardGridSkeletons() {
   return (
-    <CardGrid>
+    <div className={styles.cardGridSkeleton}>
       <CardQuotationSkeleton></CardQuotationSkeleton>
       <CardQuotationSkeleton></CardQuotationSkeleton>
       <CardQuotationSkeleton
         noTag={true}
         noButton={true}
       ></CardQuotationSkeleton>
-    </CardGrid>
+    </div>
   );
 }
